@@ -1,12 +1,13 @@
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
         //triangle(5);
         //prime1(37);
         //prime2(101);
 //        countDistinctElements();
-        maxSumOfK(new int[]{16,12,9,19,11,8}, 3);
+//        maxSumOfK(new int[]{16,12,9,19,11,8}, 3);
 
 //        int arr[] = new int[]{5, 8, -4, -4,9,-2, 2};
         //int arr[] = new int[]{8, 3, 1, 5, -6,6,2, 2};
@@ -35,7 +36,11 @@ public class Main {
 
 //        System.out.println(t.findSpiral());
 //        System.out.println(t.lcaRec(t.root,5,6));
-
+//        int[] arr={1,2,3};
+//        genSubSets(arr,0,new ArrayList<>());
+        int n=17,a=10,b=11,c=3;
+//        ropeCuttingProblem(n,a,b,c);
+        towerOfHanoi(3, 'A', 'B', 'C');
     }
 
     private static void maxSumOfK(int[] arr, int k) {
@@ -149,7 +154,38 @@ public class Main {
 
         return maxLen;
     }
+
+    static void genSubSets(int[] nums,int index, List<Integer> curr){
+        if(index==nums.length){
+            System.out.println(curr);
+            return;
+        }
+        genSubSets(nums, index+1, curr);
+        curr.add(nums[index]);
+        genSubSets(nums, index+1, curr);
+    }
+
+//    static void ropeCuttingProblem(int n, int a, int b, int c){
+//        int count=0;
+//        System.out.println("count"+cutRopes(n,a,b,c,count));
+//    }
+
+//    private static int cutRopes(int n, int a, int b, int c, int count) {
+//        cutRopes(n%a,a,b,c,count+n/a);
+//        cutRopes(n%b,a,b,c,n/b);
+//        cutRopes(n%c,a,b,c,n/c);
+//        return Math.max(n/a,Math.max(n/b,n/c));
+//        return -1;
+//    }
+    static void towerOfHanoi(int n, char from, char through, char to){
+        if(n==0) return;
+        towerOfHanoi(n-1,from,to,through);
+        System.out.println("Move disk "+n+"from "+from+"to"+to);
+        towerOfHanoi(n-1,through,from,to);
+    }
 }
+
+
 
 class Deque{
     int size,front,capacity;
