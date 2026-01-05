@@ -38,9 +38,12 @@ public class Main {
 //        System.out.println(t.lcaRec(t.root,5,6));
 //        int[] arr={1,2,3};
 //        genSubSets(arr,0,new ArrayList<>());
-        int n=17,a=10,b=11,c=3;
+//        int n=17,a=10,b=11,c=3;
+//        towerOfHanoi(3, 'A', 'B', 'C');
 //        ropeCuttingProblem(n,a,b,c);
-        towerOfHanoi(3, 'A', 'B', 'C');
+        int n = 5, a = 2, b = 1, c = 5;
+
+        System.out.println(maxCuts(n, a, b, c));
     }
 
     private static void maxSumOfK(int[] arr, int k) {
@@ -177,6 +180,22 @@ public class Main {
 //        return Math.max(n/a,Math.max(n/b,n/c));
 //        return -1;
 //    }
+static int maxCuts(int n, int a, int b, int c)
+{
+    if(n == 0)
+        return 0;
+    if(n <= -1)
+        return -1;
+
+    int res = Math.max(maxCuts(n-a, a, b, c),
+            Math.max(maxCuts(n-b, a, b, c),
+                    maxCuts(n-c, a, b, c)));
+
+    if(res == -1)
+        return -1;
+
+    return res + 1;
+}
     static void towerOfHanoi(int n, char from, char through, char to){
         if(n==0) return;
         towerOfHanoi(n-1,from,to,through);
