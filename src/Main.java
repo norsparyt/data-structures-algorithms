@@ -41,9 +41,13 @@ public class Main {
 //        int n=17,a=10,b=11,c=3;
 //        towerOfHanoi(3, 'A', 'B', 'C');
 //        ropeCuttingProblem(n,a,b,c);
-        int n = 5, a = 2, b = 1, c = 5;
+//        int n = 5, a = 2, b = 1, c = 5;
 
-        System.out.println(maxCuts(n, a, b, c));
+//        System.out.println(maxCuts(n, a, b, c));
+
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+        leftRotate(arr, 2, 7);
+        printArray(arr, 7);
     }
 
     private static void maxSumOfK(int[] arr, int k) {
@@ -201,6 +205,48 @@ static int maxCuts(int n, int a, int b, int c)
         towerOfHanoi(n-1,from,to,through);
         System.out.println("Move disk "+n+"from "+from+"to"+to);
         towerOfHanoi(n-1,through,from,to);
+    }
+    /*Function to left rotate arr[] of siz n by d*/
+    static void leftRotate(int arr[], int d, int n)
+    {
+        /* To handle if d >= n */
+        d = d % n;
+        int i, j, k, temp;
+        int g_c_d = gcd(d, n);
+        for (i = 0; i < g_c_d; i++) {
+            /* move i-th values of blocks */
+            temp = arr[i];
+            j = i;
+            while (true) {
+                k = j + d;
+                if (k >= n)
+                    k = k - n;
+                if (k == i)
+                    break;
+                arr[j] = arr[k];
+                j = k;
+            }
+            arr[j] = temp;
+        }
+    }
+
+    /*UTILITY FUNCTIONS*/
+
+    /* function to print an array */
+    static void printArray(int[] arr, int size)
+    {
+        int i;
+        for (i = 0; i < size; i++)
+            System.out.print(arr[i] + " ");
+    }
+
+    /*Function to get gcd of a and b*/
+    static int gcd(int a, int b)
+    {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, a % b);
     }
 }
 
