@@ -309,7 +309,7 @@ static int maxCuts(int n, int a, int b, int c)
 
         return sb.reverse().toString();
     }
-    public boolean isHappy(int n) {
+    public static boolean isHappy(int n) {
         Set<Integer> uniqueItems = new HashSet<>();
         int sum = 0;
         while (sum != 1) {
@@ -324,6 +324,26 @@ static int maxCuts(int n, int a, int b, int c)
             n = sum;
         }
         return true;
+    }
+    public static boolean isHappyFloyd(int n) {
+        int slow = n;
+        int fast = n;
+
+        do {
+            slow = next(slow);           // 1 step
+            fast = next(next(fast));     // 2 steps
+        } while (slow != fast);
+
+        return slow == 1;
+    }
+    private static int next(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * digit;
+            n /= 10;
+        }
+        return sum;
     }
 }
 
