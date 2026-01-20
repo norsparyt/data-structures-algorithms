@@ -370,6 +370,27 @@ static int maxCuts(int n, int a, int b, int c)
 
         return false;
     }
+
+        public boolean isAnagram(String s, String t) {
+            if (s.length() != t.length()) {
+                return false;
+            }
+
+            int[] freq = new int[26]; // assuming lowercase English letters
+
+            for (int i = 0; i < s.length(); i++) {
+                freq[s.charAt(i) - 'a']++;
+                freq[t.charAt(i) - 'a']--;
+            }
+
+            for (int count : freq) {
+                if (count != 0) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 }
 
 
