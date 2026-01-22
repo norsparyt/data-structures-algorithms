@@ -402,6 +402,24 @@ static int maxCuts(int n, int a, int b, int c)
 
         return expectedSum - actualSum;
     }
+    //column numer stirng
+    public String convertToTitle(int columnNumber) {
+        String res="";
+        int remainder;char ch;
+        while(columnNumber>0){
+            remainder=columnNumber%26;
+            if(remainder==0){
+                ch='Z';
+                columnNumber=(columnNumber/26)-1;
+            }
+            else {
+                ch= (char)(remainder+64);
+                columnNumber=(columnNumber/26);
+            }
+            res=ch+res;
+        }
+        return res;
+    }
 }
 
 
